@@ -1,0 +1,47 @@
+html {
+    height: 100%;
+}
+body{
+    min-height: 100%;
+    position: relative;
+}
+main {
+}
+#logo{
+	width: 100%;
+	max-width: 50px;
+	min-width: 10px;
+}
+
+#content{
+	padding-top: 80px;
+}
+
+#blocTopVentes{
+	padding-bottom: 80px;
+}
+
+footer{
+	height: 60px;
+	background-color: black;
+	color: whitesmoke;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+}
+
+.table th:first-child{
+	width: 60%;
+}
+.table td:nth-child(n+2), .table th:nth-child(n+2){
+	text-align: center
+}
+
+.imgPanier{
+	width: 100%;
+	max-width: 100px;
+	min-width: 10px;
+}
+.bottom{
+	height: 60px;
+}

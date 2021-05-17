@@ -1,0 +1,7 @@
+RewriteEngine On
+
+RewriteRule ^categorie/([0-9]+)$ /categorie.php?id=$1 [L]
+RewriteRule ^produit/([0-9]+)$ /produit.php?id=$1 [L]
+RewriteRule ^produit/([0-9]+)$/ok /produit.php?id=$1&panier=addOk [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([^\.]+)$ $1.php [NC,L]
