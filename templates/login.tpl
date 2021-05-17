@@ -17,12 +17,16 @@
                 <form method="post" action="../login.php">
                   <input type="hidden" name="actionLogin" id="actionLogin" value="">
                   <div class="form-group">
-                    <label>Votre email</label>
-                    <input name="email" class="form-control" placeholder="Email" type="email">
+                    <div class="form-floating mb-3">
+                      <input name="email" class="form-control" id="email" type="email">
+                      <label for="email">Adresse mail</label>
+                    </div>
                   </div><br>
                   <div class="form-group">
-                    <label>Votre mot de passe</label>
-                    <input name="pass" class="form-control" placeholder="******" type="password">
+                    <div class="form-floating mb-3">
+                      <input name="pass" class="form-control" id="mdp" type="password">
+                      <label for="mdp">Mot de passe</label>
+                    </div>
                   </div><br>  
                   <div class="form-group">
                     <button type="submit" class="btn btn-primary btn-block"> Se connecter  </button>
@@ -38,18 +42,24 @@
                 <hr>
                 <form method="post" action="../register.php">
                 <input type="hidden" name="actionRegister" id="actionRegister" value="">
-                    <div class="form-group">
-                      <label>Votre pseudo</label><br>
-                      <input name="username" class="form-control" placeholder="Pseudo" type="text">
-                    </div><br>
-                    <div class="form-group">
-                      <label>Votre adresse email</label>
-                      <input name="mail" class="form-control" placeholder="Email" type="email">
-                    </div><br>
-                    <div class="form-group">
-                      <label>Votre mot de passe</label>
-                      <input name="pw" class="form-control" placeholder="******" type="password">
-                    </div><br>
+                  <div class="form-group">
+                    <div class="form-floating mb-3">
+                      <input name="username" class="form-control" id="username" type="text">
+                      <label for="username">Nom d'utilisateur</label>
+                    </div>
+                  </div><br>
+                  <div class="form-group">
+                    <div class="form-floating mb-3">
+                      <input name="email" class="form-control" id="email2" type="email">
+                      <label for="email2">Adresse mail</label>
+                    </div>
+                  </div><br>
+                  <div class="form-group">
+                    <div class="form-floating mb-3">
+                      <input name="pass" class="form-control" id="mdp2" type="password">
+                      <label for="mdp2">Mot de passe</label>
+                    </div>
+                  </div><br>
                   <div class="form-group">
                     <button type="submit" class="btn btn-primary btn-block"> S'inscrire  </button>
                   </div> 

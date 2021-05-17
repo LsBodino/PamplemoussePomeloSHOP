@@ -6,5 +6,5 @@ $id = $_GET['id'];
 
 panier::delProduit($id);
 
-header("Location: panier.php?panier=delOk");
+header("Location: panier?panier=delOk");
 exit;

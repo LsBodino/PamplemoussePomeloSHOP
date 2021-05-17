@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le : lun. 17 mai 2021 à 10:02
+-- Généré le : lun. 17 mai 2021 à 12:52
 -- Version du serveur :  5.7.24
 -- Version de PHP : 7.2.19
 
@@ -45,14 +45,14 @@ CREATE TABLE `categorie` (
   `nom` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `img` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `parentId` int(11) DEFAULT NULL
+  `parent_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `categorie`
 --
 
-INSERT INTO `categorie` (`id`, `nom`, `description`, `img`, `parentId`) VALUES
+INSERT INTO `categorie` (`id`, `nom`, `description`, `img`, `parent_id`) VALUES
 (1, 'Pamplemousse', 'Des Pamplemousses de toutes les couleurs.', 'plm.jpg', NULL),
 (2, 'Pomélo', 'Du Pomélo ? x)', 'pml.jpg', 1),
 (3, 'CMS', 'Pour faire votre beau site en Pamplemousse.', 'cms.jpg', NULL);
@@ -66,18 +66,19 @@ INSERT INTO `categorie` (`id`, `nom`, `description`, `img`, `parentId`) VALUES
 CREATE TABLE `commande` (
   `id` int(11) NOT NULL,
   `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `userId` int(11) NOT NULL
+  `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `commande`
 --
 
-INSERT INTO `commande` (`id`, `date`, `userId`) VALUES
+INSERT INTO `commande` (`id`, `date`, `user_id`) VALUES
 (3, '2021-05-12 14:09:10', 1),
 (4, '2021-05-12 15:17:50', 1),
 (5, '2021-05-12 15:20:32', 1),
-(6, '2021-05-17 10:33:42', 6);
+(6, '2021-05-17 10:33:42', 6),
+(7, '2021-05-17 14:27:03', 6);
 
 -- --------------------------------------------------------
 
@@ -92,22 +93,22 @@ CREATE TABLE `produit` (
   `img` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `prix` float NOT NULL,
   `stock` int(11) NOT NULL,
-  `categorieId` int(11) NOT NULL
+  `categorie_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `produit`
 --
 
-INSERT INTO `produit` (`id`, `nom`, `description`, `img`, `prix`, `stock`, `categorieId`) VALUES
-(1, 'Pamplemousse', 'Par défaut.', 'plm.jpg', 154, 0, 1),
-(2, 'Pamplemousse Sépia', 'Un pamplemousse qui a poussé dans la lave et a été séché dans le désert Egyptien.', 'plms.jpg', 42, 24, 1),
-(4, 'Pomélo', 'Par défaut.', 'pml.jpg', 0, 154, 2),
-(5, 'Pomélo Sépia', 'Un pomélo qui a été poussé dans le désert Egyptien et séché dans la lave.', 'pmls.jpg', 24, 42, 2),
-(7, 'Pamplemousse Coréen', 'Un pamplemousse qui est né sur les terres Nord-Coréennes avant de s\'exilé vers les terres de Séoul en Corée du Sud.', 'plmc.jpg', 1945, 1991, 1),
-(8, 'Pomélo Coréen', 'Un pomélo qui est né sur les terres de Séoul en Corée du sud avant de s\'exilé sur les terres Nord-Coréennes.', 'pmlc.jpg', 1991, 1945, 2),
-(9, 'Pamplemousse de Tchernobyl', 'Un pamplemousse qui fut poussé dans la centrale nucléaire de Tchernobyl.', 'plmt.jpg', 2604, 1986, 1),
-(10, 'Pomélo de Tchernobyl', 'Un pomélo qui fut poussé dans la ville de Tchernobyl.', 'pmlt.jpg', 1986, 2604, 2),
+INSERT INTO `produit` (`id`, `nom`, `description`, `img`, `prix`, `stock`, `categorie_id`) VALUES
+(1, 'Pamplemousse Classique', 'Par défaut.', 'plm.jpg', 154, 0, 1),
+(2, 'Pamplemousse Sépia', 'Pamplemousse qui a poussé dans la lave et a séché dans le désert Egyptien.', 'plms.jpg', 42, 24, 1),
+(4, 'Pomélo Classique', 'Par défaut.', 'pml.jpg', 0, 154, 2),
+(5, 'Pomélo Sépia', 'Pomélo qui a poussé dans le désert Egyptien et séché dans la lave.', 'pmls.jpg', 24, 42, 2),
+(7, 'Pamplemousse Coréen', 'Pamplemousse qui est né sur les terres Nord-Coréennes avant de s\'exilé vers les terres de Séoul en Corée du Sud.', 'plmc.jpg', 1945, 1991, 1),
+(8, 'Pomélo Coréen', 'Pomélo qui est né sur les terres de Séoul en Corée du sud avant de s\'exilé sur les terres Nord-Coréennes.', 'pmlc.jpg', 1991, 1945, 2),
+(9, 'Pamplemousse de Tchernobyl', 'Pamplemousse qui fut poussé dans la centrale nucléaire de Tchernobyl.', 'plmt.jpg', 2604, 1986, 1),
+(10, 'Pomélo de Tchernobyl', 'Pomélo qui fut poussé dans la ville de Tchernobyl.', 'pmlt.jpg', 1986, 2604, 2),
 (11, 'PamplemousseCMS', 'C\'est gratuit et disponible en téléchargement.. et ça c\'est beau.', 'cms.jpg', 0, 10000000, 3);
 
 -- --------------------------------------------------------
@@ -119,7 +120,7 @@ INSERT INTO `produit` (`id`, `nom`, `description`, `img`, `prix`, `stock`, `cate
 CREATE TABLE `produitcommande` (
   `id` int(11) NOT NULL,
   `produit_id` int(11) NOT NULL,
-  `commandeID` int(11) NOT NULL,
+  `commande_id` int(11) NOT NULL,
   `qte` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -127,7 +128,7 @@ CREATE TABLE `produitcommande` (
 -- Déchargement des données de la table `produitcommande`
 --
 
-INSERT INTO `produitcommande` (`id`, `produit_id`, `commandeID`, `qte`) VALUES
+INSERT INTO `produitcommande` (`id`, `produit_id`, `commande_id`, `qte`) VALUES
 (1, 1, 3, 1),
 (2, 1, 4, 1),
 (3, 5, 2, 1),
@@ -135,7 +136,8 @@ INSERT INTO `produitcommande` (`id`, `produit_id`, `commandeID`, `qte`) VALUES
 (5, 15, 2, 2),
 (6, 1, 5, 1),
 (7, 1, 6, 1),
-(8, 9, 6, 2);
+(8, 9, 6, 2),
+(9, 5, 7, 4);
 
 -- --------------------------------------------------------
 
@@ -155,7 +157,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `name`, `login`, `mdp`) VALUES
-(6, 'Lucas', 'lucas@pamplemoussecms.com', '$2y$10$EdX9IiFrjpWTYWTuhvp6gOlkSTiyH3lTAS8.t9.xS6Wt85MeBFkaO');
+(6, 'Lucas', 'lucas@pamplemoussecms.com', '$2y$10$WDyeqJNl70OlzNOLHKvUkOD80vYs4opP7uG3jlGIL1d592VPditsq');
 
 --
 -- Index pour les tables déchargées
@@ -172,7 +174,7 @@ ALTER TABLE `annonces`
 --
 ALTER TABLE `categorie`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `categorie_parentId` (`parentId`);
+  ADD KEY `categorie_parentId` (`parent_id`);
 
 --
 -- Index pour la table `commande`
@@ -185,14 +187,14 @@ ALTER TABLE `commande`
 --
 ALTER TABLE `produit`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `produit_categorieId` (`categorieId`);
+  ADD KEY `produit_categorieId` (`categorie_id`);
 
 --
 -- Index pour la table `produitcommande`
 --
 ALTER TABLE `produitcommande`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `commandeID` (`commandeID`);
+  ADD KEY `commandeID` (`commande_id`);
 
 --
 -- Index pour la table `user`
@@ -221,7 +223,7 @@ ALTER TABLE `categorie`
 -- AUTO_INCREMENT pour la table `commande`
 --
 ALTER TABLE `commande`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT pour la table `produit`
@@ -233,7 +235,7 @@ ALTER TABLE `produit`
 -- AUTO_INCREMENT pour la table `produitcommande`
 --
 ALTER TABLE `produitcommande`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT pour la table `user`
@@ -249,13 +251,13 @@ ALTER TABLE `user`
 -- Contraintes pour la table `categorie`
 --
 ALTER TABLE `categorie`
-  ADD CONSTRAINT `categorie_ibfk_1` FOREIGN KEY (`parentId`) REFERENCES `categorie` (`id`);
+  ADD CONSTRAINT `categorie_ibfk_1` FOREIGN KEY (`parent_id`) REFERENCES `categorie` (`id`);
 
 --
 -- Contraintes pour la table `produit`
 --
 ALTER TABLE `produit`
-  ADD CONSTRAINT `produit_ibfk_1` FOREIGN KEY (`categorieId`) REFERENCES `categorie` (`id`);
+  ADD CONSTRAINT `produit_ibfk_1` FOREIGN KEY (`categorie_id`) REFERENCES `categorie` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

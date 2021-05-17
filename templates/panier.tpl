@@ -22,7 +22,12 @@
               </div>
             </td>
             <td>{number_format($produits[0]->prix, 2, ',', ' ')} €</td>
-            <td>{$produits[1]}</td>
+            <td>
+            <form action="updp" method="POST">
+              <input type="hidden" name="idProduit" value="{$produits[0]->id}">
+              <input type="number" name="qteProduit" value="{$produits[1]}" min="0" max="{$produits[0]->stock}" class="form-control updateQte">
+            </form>
+            </td>
             <td>{number_format($produits[1]*$produits[0]->prix, 2, ',', ' ')} €</td>
             <td><a href="delp?id={$produits[0]->id}"><button type="button" class="btn btn-outline-danger" ><i class="fas fa-trash-alt"></i></button></a></td>
           </tr>

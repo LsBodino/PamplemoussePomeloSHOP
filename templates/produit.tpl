@@ -40,12 +40,13 @@
           </div>
           <div class="card-body">
             <h5 class="card-title">{$product['nom']}</h5>
-            <p class="card-text">{$product['description']}</p>
-            <a href="../produit/{$product['id']}" class="btn btn-primary">Voir</a>
+            <p class="card-text">{$product['description']}<br>
+            <a href="../produit/{$product['id']}" class="btn btn-primary">Voir</a></p>
+            <br>
           </div>
         </div>
     
     {/foreach}
     </div>
   </div>
-{/block}
+  {/block}

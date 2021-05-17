@@ -8,7 +8,7 @@ class commande
 	
 	private $id;
 	private $date;
-	private $userId;
+	private $user_id;
 	private $produits;
 
 	function __construct(){

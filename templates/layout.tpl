@@ -26,7 +26,7 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-primary" data-dismiss="modal">Continuer mes achats</button>
-                  <a href="../panier.php"><button type="button" class="btn btn-secondary">Aller vers mon panier</button></a>
+                  <a href="../panier.php"><button type="button" class="btn btn-danger">Aller vers mon panier</button></a>
                 </div>
               </div>
             </div>

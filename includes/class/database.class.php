@@ -30,19 +30,19 @@ class database
 
 		try{
 			self::$_conn->beginTransaction();
-			$sql = "INSERT INTO `commande`(`userId`) VALUES (:userid)";
+			$sql = "INSERT INTO `commande`(`user_id`) VALUES (:user_id)";
 
 			$req = self::$_conn->prepare($sql);
-			$req->bindValue(":userid", $user->id);
+			$req->bindValue(":user_id", $user->id);
 			$req->execute();
 			$idCommande = self::$_conn->lastInsertId();
 
-			$sqlInsertProduitCommande = "INSERT INTO `produitcommande`(`produit_id`, `commandeID`, `qte`) VALUES (:produit_id, :commandeID, :qte)";
+			$sqlInsertProduitCommande = "INSERT INTO `produitcommande`(`produit_id`, `commande_id`, `qte`) VALUES (:produit_id, :commande_id, :qte)";
 			$reqProduit = self::$_conn->prepare($sqlInsertProduitCommande);
 			foreach ($panier as $produit) {
 				# code...
 				$reqProduit->bindValue(":produit_id", $produit[0]->id);
-				$reqProduit->bindValue(":commandeID", $idCommande);
+				$reqProduit->bindValue(":commande_id", $idCommande);
 				$reqProduit->bindValue(":qte", $produit[1]);
 
 				$reqProduit->execute();
@@ -81,5 +81,29 @@ class database
 		}else{
 			exit;
 		}
+	}
+	static function Update()
+	{
+		if(isset($_POST['email']) AND !empty($_POST['email'])){
+            if(filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
+               $newmail = htmlspecialchars($_POST['email']);
+               $insertmail = self::$_conn->prepare("UPDATE user SET login = ? WHERE id = ?");
+               $insertmail->execute(array($newmail, $_SESSION['id']));
+               header('Location: space');
+            }else{
+               exit;
+            }
+         }
+         if(isset($_POST['pass1']) AND !empty($_POST['pass1']) AND isset($_POST['pass2']) AND !empty($_POST['pass2'])){
+            $pw1 = $_POST['pass1'];
+            $pw2 = $_POST['pass2'];
+            if($pw1 == $pw2){
+               $insertpw = self::$_conn->prepare("UPDATE user SET mdp = ? WHERE id = ?");
+               $insertpw->execute(array(password_hash($pw1, PASSWORD_DEFAULT), $_SESSION['id']));
+               header('Location: space');
+            }else{
+               exit;
+            }
+         }
 	}
 }

@@ -21,7 +21,7 @@ class manager
 		$arrayToReturn = array();
 		foreach (database::selectAll("produit") as $product) {
 			# code...
-			if($product['categorieId'] == $categorie_id){
+			if($product['categorie_id'] == $categorie_id){
 				if($product['id'] != $idToIgnore)
 					$arrayToReturn[] = $product;
 			}
@@ -46,7 +46,7 @@ class manager
 	static function getAllCommandeUtilisateur($idUtilisateur){
 		$arrayToReturn = array();
 		foreach(database::selectAll("commande") as $commande){
-			if($commande['userId'] == $idUtilisateur){
+			if($commande['user_id'] == $idUtilisateur){
 				$arrayToReturn[] = $commande;
 			}
 		}
@@ -56,7 +56,7 @@ class manager
 	static function recupProduits($idCommande){
 		$arrayToReturn = array();
 		foreach(database::selectAll("produitcommande") as $produitcommande){
-			if($produitcommande['commandeID'] == $idCommande){
+			if($produitcommande['commande_id'] == $idCommande){
 				$arrayToReturn[] = $produitcommande;
 			}
 		}

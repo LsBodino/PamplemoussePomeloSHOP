@@ -38,6 +38,10 @@ if(!empty($_GET['panier'])){
 			# code...
 			$msg = "Le produit a bien été supprimé";
 			break;
+		case 'updateOk':
+			# code...
+			$msg = "Le produit a bien été mis à jour";
+			break;
 		default:
 			# code...
 			$msg = "Une erreur est intervenue";
