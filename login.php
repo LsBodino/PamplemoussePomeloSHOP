@@ -14,7 +14,7 @@ $page = $_SERVER['HTTP_REFERER'];
 if(empty($_POST['actionLogin']))
 	header("Location: ".$page);
 else 
-	header("Location: validePanier.php");
+	header("Location: panier.php");
 exit;
 
 ?>

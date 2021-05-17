@@ -35,10 +35,6 @@ class manager
 
 	static function getById($id, $table = "produit", $comportement = PDO::FETCH_OBJ){
 		foreach (database::selectAll($table, $comportement) as $element) {
-			# code...
-			// echo "<pre>";
-			// var_dump($element);
-			// echo "</pre>";
 			if($element->id == $id){
 				return $element;
 				break;

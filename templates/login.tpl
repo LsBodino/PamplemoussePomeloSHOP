@@ -14,7 +14,7 @@
               <article class="card-body">
                 <h4 class="card-title text-center mb-4 mt-1">Connexion</h4>
                 <hr>
-                <form method="post" action="traitementLogin.php">
+                <form method="post" action="../login.php">
                   <input type="hidden" name="actionLogin" id="actionLogin" value="">
                   <div class="form-group">
                     <label>Votre email</label>
@@ -36,7 +36,7 @@
               <article class="card-body">
                 <h4 class="card-title text-center mb-4 mt-1">Inscription</h4>
                 <hr>
-                <form method="post" action="traitementRegister.php">
+                <form method="post" action="../register.php">
                 <input type="hidden" name="actionRegister" id="actionRegister" value="">
                     <div class="form-group">
                       <label>Votre pseudo</label><br>

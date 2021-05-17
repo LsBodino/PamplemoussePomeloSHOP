@@ -16,7 +16,6 @@ if(!isset($_SESSION['panier'])){
 
 include 'db.php';
 database::createConnexion();
-//manager::createBDD();
 $smarty = new Smarty;
 $smarty->debugging = true;
 $userLogin = null;
@@ -38,10 +37,6 @@ if(!empty($_GET['panier'])){
 		case 'delOk':
 			# code...
 			$msg = "Le produit a bien été supprimé";
-			break;
-		case 'updateOk':
-			# code...
-			$msg = "Le produit a bien été mis à jour";
 			break;
 		default:
 			# code...
