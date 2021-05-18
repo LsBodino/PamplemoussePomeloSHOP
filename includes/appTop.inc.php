@@ -17,7 +17,7 @@ if(!isset($_SESSION['panier'])){
 include 'db.php';
 database::createConnexion();
 $smarty = new Smarty;
-$smarty->debugging = true;
+$smarty->debugging = false;
 $userLogin = null;
 if(!empty($_SESSION["login"]) && !empty($_SESSION["mdp"]) && !empty($_SESSION["name"])){
 	$login = true;

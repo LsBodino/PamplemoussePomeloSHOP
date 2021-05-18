@@ -59,8 +59,8 @@ class database
 	static function Inscription()
 	{
 		$username = htmlspecialchars($_POST['username']);
-		$mail = htmlspecialchars($_POST['mail']);
-		$pw = password_hash($_POST['pw'], PASSWORD_DEFAULT);
+		$mail = htmlspecialchars($_POST['email2']);
+		$pw = password_hash($_POST['mdp2'], PASSWORD_DEFAULT);
 		$usernamee = self::$_conn->prepare("SELECT * FROM user WHERE name = ?");
 		$usernamee->execute(array($username));
 		$usernameexist = $usernamee->rowCount();
